@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "http://localhost:3000/api/auth/";
+const API_URL = `${import.meta.env.VITE_BACKEND_API_URL}auth/` || "http://localhost:3000/api/auth/";
 
 export const incrementPoints = createAsyncThunk(
   "auth/incrementPoints",

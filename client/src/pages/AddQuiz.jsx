@@ -6,13 +6,15 @@ import { Plus, Trash2 } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import Code from "./Code";
 
+const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:3000/api/";
+
 export default function AddQuiz() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [questions, setQuestions] = useState([
         { questionText: "", options: ["", "", "", ""], correctAnswerIndex: 0 },
     ]);
-    const [imageUrl, setImageUrl] = useState("https://png.pngtree.com/png-clipart/20230507/original/pngtree-quiz-time-bubble-speech-banner-vector-design-png-image_9147207.png");
+    const [imageUrl, setImageUrl] = useState("");
     const [live, setLive] = useState("Yes");
 
     const [code, setCode] = useState(null);
@@ -64,7 +66,7 @@ export default function AddQuiz() {
         setLoading(true);
         try {
             const payload = { title, description, questions, imageUrl, live:"Yes" };
-           const response = await axios.post("http://localhost:3000/api/quiz/add", payload);
+           const response = await axios.post(`${BACKEND_API_URL}quiz/add`, payload);
            console.log(response.data.code);
            setCode(response.data.code);
             alert("Quiz created successfully!");

@@ -4,15 +4,15 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white py-10 px-6 mt-auto">
       <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-2">
-        
+
         {/* Logo + Socials */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4">Lumin</h1>
           <div className="flex space-x-6 mb-4">
-            <FaTwitter className="hover:text-blue-400 transition cursor-pointer" size={28} />
-            <FaGithub className="hover:text-gray-400 transition cursor-pointer" size={28} />
-            <FaLinkedin className="hover:text-blue-400 transition cursor-pointer" size={28} />
-            <FaInstagram className="hover:text-pink-400 transition cursor-pointer" size={28} />
+            <FaTwitter className="hover:text-blue-400 transition cursor-pointer" onClick={() => window.open("https://x.com/sundaramkatare", "_blank")} size={28} />
+            <FaGithub className="hover:text-gray-400 transition cursor-pointer" onClick={() => window.open("https://github.com/Sundaram-Katare", "_blank")} size={28} />
+            <FaLinkedin className="hover:text-blue-400 transition cursor-pointer" onClick={() => window.open("https://www.linkedin.com/in/sundaram-katare5/", "_blank")} size={28} />
+            <FaInstagram className="hover:text-pink-400 transition cursor-pointer" onClick={() => window.open("https://x.com/sundaramkatare", "_blank")} size={28} />
           </div>
         </div>
 

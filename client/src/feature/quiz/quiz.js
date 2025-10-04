@@ -1,8 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:3000/api/"
+
 export const fetchQuizzes = createAsyncThunk("quiz/", async () => {
-  const response = await axios.get("http://localhost:3000/api/quiz");
+  const response = await axios.get(`${BACKEND_API_URL}quiz`);
   return response.data;
 });
 

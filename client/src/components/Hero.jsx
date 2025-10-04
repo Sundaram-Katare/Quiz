@@ -15,7 +15,7 @@ export default function Hero() {
 
                     {/* GIF Section */}
                     <motion.img 
-                        src="https://assets-v2.lottiefiles.com/a/7b595d22-2680-11ef-884c-7be2b3443041/it77ydmUnw.gif" 
+                        src="images/heroGif.gif" 
                         alt="Hero Animation"
                         className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto lg:mx-0"
                         initial={{ x: 80, opacity: 0, scale: 0 }}
