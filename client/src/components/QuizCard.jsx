@@ -1,42 +1,51 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Quiz from "../pages/Quiz";
+import { motion } from "framer-motion";
 
 export default function QuizCard({ quiz }) {
   const [open, setOpen] = useState(false);
-
   const navigate = useNavigate();
 
-  // const handleClick = () => {
-  //   navigate("/quiz", {
-  //     state: { quiz },
-  //   });
-  // };
+  const openQuiz = () => {
+    setOpen(true);
+    navigate("/quiz", {
+      state: { _id: quiz._id, from: "Trivia" }
+    });
+  };
 
   return (
-    <div className="p-6 bg-white rounded-3xl border-4 border-blue-200 flex flex-col items-center max-w-xs mx-auto shadow-2xl transition-all duration-300 hover:scale-105 sm:max-w-sm md:max-w-md">
+    <motion.div
+      className="p-6 bg-white rounded-3xl border-4 border-blue-200 flex flex-col items-center max-w-xs mx-auto shadow-2xl transition-all duration-300 hover:scale-105 sm:max-w-sm md:max-w-md"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.01 }}
+    >
       {/* Decorative icon */}
-      <div className="w-28 h-28 sm:w-36 sm:h-36 mb-4 flex items-center justify-center">
-        <img src={quiz.image} className="border rounded-full" alt={quiz.title || "Quiz"} />
+      <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mb-4 flex items-center justify-center">
+        <img
+          src={quiz.image}
+          className="border rounded-xl h-full w-full object-cover"
+          alt={quiz.title || "Quiz"}
+        />
       </div>
 
-      <h2 className="text-2xl font-bold text-center mb-1 text-gray-800">
+      <h2 className="text-xl sm:text-2xl font-bold text-center mb-1 text-gray-800">
         {quiz.title}
       </h2>
 
-      <p className="text-gray-500 text-center mb-6 px-4">
+      <p className="text-gray-500 text-center mb-6 px-2 sm:px-4 text-sm sm:text-base">
         Create, customize, and challenge your friends!
       </p>
 
       {/* "Get Started" button */}
-      <div className="w-full px-4">
+      <div className="w-full px-2 sm:px-4">
         <button
-          onClick={() => setOpen(true)}
-          className="w-full py-3 px-5 rounded-xl text-white font-semibold shadow-lg transition-transform transform hover:scale-105 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600"
+          onClick={openQuiz}
+          className="w-full py-2 sm:py-3 px-4 sm:px-5 rounded-xl text-white font-semibold shadow-lg transition-transform transform hover:scale-105 bg-[#ff7514]"
         >
           Get Started
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

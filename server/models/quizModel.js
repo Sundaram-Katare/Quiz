@@ -32,6 +32,9 @@ const quizSchema = new mongoose.Schema({
             }
         },
     },
+    live: { type: String, default: "Yes" },
+    code: { type: String },
+    image: { type: String, default: "images/room.png" },
     createdAt: {
         type: Date,
         default: Date.now(),

@@ -1,23 +1,135 @@
-import { FaAngleDown } from "react-icons/fa6";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../feature/auth/authSlice";
+import { motion } from "framer-motion";
+import { FiMenu, FiX } from "react-icons/fi"; // hamburger icons
 
 export default function Navbar() {
-    return (
-        <>
-         <nav className="flex flex-row justify-between p-6 bg-transparent text-white">
-            <div className="flex justify-center items-center">
-                <h1 className="text-2xl font-bold">Lumin</h1>
-            </div>
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-            <div className="flex flex-row justify-between gap-4 text-lg font-semibold">
-                <h2 className="flex justify-center items-center space-x-1 cursor-pointer">Trivia <FaAngleDown /></h2>
-                <h2 className="flex justify-center items-center space-x-1 cursor-pointer">Quiz <FaAngleDown /></h2>
-                <h2 className="flex justify-center items-center space-x-1 cursor-pointer">Leaderboard <FaAngleDown /></h2>
-            </div>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-            <div className="flex justify-center items-center">
-                <button className="bg-[#5830af] font-semibold rounded-2xl px-2 py-1 text-xl">Login</button>
-            </div>
-         </nav>
-        </>
-    )
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/auth");
+  };
+
+  return (
+    <nav className="flex justify-between items-center p-4 sm:p-6 bg-transparent text-white font-poppins italic relative">
+      {/* Logo */}
+      <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
+        <h1 className="text-4xl font-bold">Lumin</h1>
+      </div>
+
+      {/* Desktop Menu */}
+      <div className="hidden md:flex gap-4 text-lg font-semibold">
+        <h2
+          className="cursor-pointer bg-purple-300/30 rounded-xl px-3 py-1"
+          onClick={() => navigate("/trivia")}
+        >
+          Trivia
+        </h2>
+        <h2
+          className="cursor-pointer bg-purple-300/30 rounded-xl px-3 py-1"
+          onClick={() => navigate("/leaderboard")}
+        >
+          Leaderboard
+        </h2>
+        <h2
+          className="cursor-pointer bg-purple-300/30 rounded-xl px-3 py-1"
+          onClick={() => navigate("/addQuiz")}
+        >
+          Room
+        </h2>
+      </div>
+
+      {/* User Section */}
+      <div className="hidden md:flex items-center gap-4">
+        {user ? (
+          <>
+            <motion.button
+              className="bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-300 px-3 py-1 text-lg"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+              onClick={handleLogout}
+            >
+              Logout
+            </motion.button>
+            <img
+              src="https://media.lordicon.com/upload/pages/2024_06/Opoe5dnNVY59jeVSWRZm1.svg"
+              className="h-10 cursor-pointer hover:scale-110 transition duration-300"
+              onClick={() => navigate("/profile")}
+              alt="profile"
+            />
+          </>
+        ) : (
+          <button
+            className="bg-gray-800 font-semibold rounded-2xl px-3 py-1 text-lg"
+            onClick={() => navigate("/auth")}
+          >
+            Login
+          </button>
+        )}
+      </div>
+
+      {/* Mobile Hamburger */}
+      <div className="md:hidden flex items-center">
+        <button onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {menuOpen && (
+        <div className="absolute top-16 left-0 w-full bg-[#1a1032] text-white flex flex-col items-center gap-4 py-6 shadow-lg rounded-b-2xl md:hidden z-50">
+          <h2
+            className="cursor-pointer bg-purple-300/30 rounded-xl px-4 py-2 w-11/12 text-center"
+            onClick={() => { navigate("/trivia"); setMenuOpen(false); }}
+          >
+            Trivia
+          </h2>
+          <h2
+            className="cursor-pointer bg-purple-300/30 rounded-xl px-4 py-2 w-11/12 text-center"
+            onClick={() => { navigate("/leaderboard"); setMenuOpen(false); }}
+          >
+            Leaderboard
+          </h2>
+          <h2
+            className="cursor-pointer bg-purple-300/30 rounded-xl px-4 py-2 w-11/12 text-center"
+            onClick={() => { navigate("/addQuiz"); setMenuOpen(false); }}
+          >
+            Room
+          </h2>
+
+          {user ? (
+            <>
+              <motion.button
+                className="bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-300 px-6 py-2 text-lg"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => { handleLogout(); setMenuOpen(false); }}
+              >
+                Logout
+              </motion.button>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/9815/9815472.png"
+                className="h-12 cursor-pointer hover:scale-105 transition duration-300"
+                onClick={() => { navigate("/profile"); setMenuOpen(false); }}
+                alt="profile"
+              />
+            </>
+          ) : (
+            <button
+              className="bg-gray-800 font-semibold rounded-2xl px-6 py-2 text-lg"
+              onClick={() => { navigate("/auth"); setMenuOpen(false); }}
+            >
+              Login
+            </button>
+          )}
+        </div>
+      )}
+    </nav>
+  );
 }
