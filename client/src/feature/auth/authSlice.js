@@ -1,9 +1,7 @@
-// src/features/auth/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-// Backend API
 const API_URL = "http://localhost:3000/api/auth/";
 
 export const incrementPoints = createAsyncThunk(
@@ -61,7 +59,7 @@ export const getPoints = createAsyncThunk(
   }
 );
 
-// Register user
+
 export const register = createAsyncThunk("auth/register", async (userData, thunkAPI) => {
   try {
     const res = await axios.post(API_URL + "signup", userData);
@@ -75,26 +73,19 @@ export const register = createAsyncThunk("auth/register", async (userData, thunk
   }
 });
 
-// Login user
 export const login = createAsyncThunk("auth/login", async (userData, thunkAPI) => {
   try {
     const res = await axios.post(API_URL + "login", userData);
-    console.log(res.data);
     if (res.data.token) {
-      console.log(`++++++++++++++++++++++++++`, res.data);
       localStorage.setItem("user", JSON.stringify(res.data));
-      console.log(`+++555555555555555555`, res.data);
-
     }
     toast.success("Login Successful");
-    console.log(res);
     return res.data;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response.data.message || "Error");
   }
 });
 
-// Logout user
 export const logout = createAsyncThunk("auth/logout", async () => {
   localStorage.removeItem("user");
 });

@@ -13,11 +13,8 @@ export default function Home() {
          <div>
             <Hero />
             <LeaderboardAd />
-            {/* <Mystery /> */}
             <RoomQuizAd />
             <HowItWorks />
-            {/* <Achievements /> */}
-            {/* <Numbers /> */}
             <Footer />
          </div>
         </>

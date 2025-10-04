@@ -23,9 +23,6 @@ const quizSlice = createSlice({
     setQuizzes: (state, action) => {
       state.quizzes = action.payload;
     },
-    // getQuizById: (state, action) => {
-    //     state.quiz = 
-    // }
   },
   extraReducers: (builder) => {
       builder
@@ -46,9 +43,3 @@ const quizSlice = createSlice({
 export const { addQuiz, setQuizzes } = quizSlice.actions;
 
 export default quizSlice.reducer;
-
-
-// //
-// export const { addTodo, removeTodo } = todoSlice.actions;
-
-// export default todoSlice.reducer;

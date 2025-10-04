@@ -6,8 +6,6 @@ import { Plus, Trash2 } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import Code from "./Code";
 
-// import {nanoid} from 'nanoid';
-
 export default function AddQuiz() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -24,7 +22,7 @@ export default function AddQuiz() {
 
     const [loading, setLoading] = useState(false);
 
-    // Add new empty question
+    
     const addQuestion = () => {
         setQuestions([
             ...questions,
@@ -32,35 +30,31 @@ export default function AddQuiz() {
         ]);
     };
 
-    // Remove a question
+  
     const removeQuestion = (index) => {
         const updated = [...questions];
         updated.splice(index, 1);
         setQuestions(updated);
     };
 
-    // Update question text
     const updateQuestionText = (index, value) => {
         const updated = [...questions];
         updated[index].questionText = value;
         setQuestions(updated);
     };
 
-    // Update option
     const updateOption = (qIndex, oIndex, value) => {
         const updated = [...questions];
         updated[qIndex].options[oIndex] = value;
         setQuestions(updated);
     };
 
-    // Update correct answer
     const updateCorrectAnswer = (qIndex, value) => {
         const updated = [...questions];
         updated[qIndex].correctAnswerIndex = parseInt(value);
         setQuestions(updated);
     };
 
-    // Submit Quiz
     const handleSubmit = async () => {
         if (!title || !description) {
             alert("Title and description are required!");
@@ -74,7 +68,6 @@ export default function AddQuiz() {
            console.log(response.data.code);
            setCode(response.data.code);
             alert("Quiz created successfully!");
-            // reset
             setTitle("");
             setDescription("");
             setQuestions([{ questionText: "", options: ["", "", "", ""], correctAnswerIndex: 0 }]);
@@ -116,30 +109,6 @@ export default function AddQuiz() {
                         />                        
                     </div>
 
-                    {/* <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-300">
-                            Image URL
-                        </label>
-                        <input type="text"
-                               placeholder="Enter Image URL"
-                               value={imageUrl}
-                               onChange={(e) => setImageUrl(e.target.value)}
-                            className="mt-1 w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        />                       
-                    </div> */}
-
-                    {/* <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-300">
-                            Is Quiz Live
-                        </label>
-                        <input type="text"
-                               placeholder="Yes/No"
-                               value={live}
-                               onChange={(e) => setLive(true)}
-                            className="mt-1 w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        />                       
-                    </div> */}
-
                     <div className="mb-6">
                         <label className="block text-sm font-medium text-gray-300">
                             Description
@@ -153,7 +122,6 @@ export default function AddQuiz() {
                         />
                     </div>
 
-                    {/* Questions */}
                     <div className="space-y-8">
                         {questions.map((q, qIndex) => (
                             <motion.div

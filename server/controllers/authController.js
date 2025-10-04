@@ -82,7 +82,6 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const incrementPoints = async (req, res) => {
-    // Get userId from req.user (set by verifyToken middleware)
     const userId = req.user?.id || req.body.userId;
 
     if (!userId) {
@@ -103,24 +102,6 @@ export const incrementPoints = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
-
-// export const getWrongQuestions = async () => {
-//     try {
-//         const 
-//     }
-// }
-
-// export const updateWrongQuestionsCount = async (req, res) => {
-//     try {
-//         const userId = req.user?.id || req.body.userId;
-
-//         if (!userId) {
-//     return res.status(400).json({ message: "User ID missing" });
-//   }
-
-
-//     }
-// } 
 
 export const incrementQuizParticipated = async (req, res) => {
     const userId = req.user?.id || req.UserId;
@@ -169,56 +150,6 @@ export const getUserAccuracy = async (req, res) => {
     }
 };
 
-export const setAvatar = async (req, res) => {
-  const { avatar } = req.body; // Destructure avatar from req.body
-  const userId = req.user?.id || req.userId;
-
-  if (!userId) {
-    return res.status(400).json({ message: "UserId is missing" });
-  }
-
-  if (!avatar) {
-    return res.status(400).json({ message: "Avatar required" });
-  }
-
-  try {
-    // Update user and return the NEW user document (important: { new: true })
-    const user = await User.findByIdAndUpdate(
-      userId,
-      { avatar: avatar },
-      { new: true } // Return updated document
-    );
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.json({ avatar: user.avatar, message: "Avatar updated successfully!" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
-export const getAvatar = async (req, res) => {
-  const userId = req.user?.id || req.userId;
-
-  if (!userId) {
-    return res.status(400).json({ message: "UserId is missing" });
-  }
-
-  try {
-    const user = await User.findById(userId).select("avatar");
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.json({ avatar: user.avatar || "" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
 export const getPoints = async (req, res) => {
     const userId = req.user?.id || req.userId;
 
@@ -239,4 +170,4 @@ export const getPoints = async (req, res) => {
     } catch {
         res.status(500).json({ message: "Server error" });
     }
-} 
+};

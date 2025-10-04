@@ -1,4 +1,3 @@
-// src/pages/Auth.jsx
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, register } from "../feature/auth/authSlice";
@@ -20,14 +19,15 @@ export default function Auth() {
     e.preventDefault();
     if (isLogin) {
       dispatch(login({ email: formData.email, password: formData.password }));
-      navigate("/profile")
+      navigate("/profile");
     } else {
       dispatch(register(formData));
+      navigate("/profile");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-700 to-purple-400">
+    <div className="min-h-screen flex items-center justify-center bg-[url('https://static.vecteezy.com/system/resources/previews/023/867/729/non_2x/question-mark-copy-space-background-yellow-quiz-banner-template-vector.jpg')] bg-cover bg-center bg-no-repeat">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md text-center">
         {/* Icon */}
         <div className="flex justify-center mb-4">

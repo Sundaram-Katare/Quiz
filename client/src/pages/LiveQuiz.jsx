@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchQuizzes } from "../feature/quiz/quiz.js";
 import Navbar from "../components/Navbar.jsx";
 
-// LiveQuiz component
 export default function LiveQuiz() {
     const quizzes = useSelector((state) => state.quiz.quizzes);
     const [code, setCode] = useState("");
@@ -28,7 +27,6 @@ export default function LiveQuiz() {
             console.log(code);
             console.log(resp.data._id);
             if (!resp.data) return alert("Quiz not found");
-            // Pass the quiz _id correctly from resp.data._id
             navigate('/quiz', { state: { _id: resp.data._id, from: "Trivia" } });
         } catch (err) {
             alert("Invalid code or server error");

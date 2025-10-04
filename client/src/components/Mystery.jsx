@@ -12,7 +12,7 @@ export default function Mystery() {
       const giftX = info.point.x;
       const giftY = info.point.y;
 
-      // check if gift is inside the box
+      // ✅ check if gift is inside drop box
       if (
         giftX >= box.left &&
         giftX <= box.right &&
@@ -59,10 +59,10 @@ export default function Mystery() {
           <motion.img
             src="https://png.pngtree.com/png-clipart/20250418/original/pngtree-gift-box-red-gift-box-yellow-ribbon-png-image_20826676.png"
             drag
-            dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
+            // ❌ removed dragConstraints because it was locking movement
             onDragEnd={handleDrop}
             whileDrag={{ scale: 1.2, rotate: 15 }}
-            className="h-48 md:h-60 cursor-pointer drop-shadow-2xl"
+            className="h-24 md:h-36 cursor-pointer drop-shadow-2xl"
           />
         </div>
       </div>

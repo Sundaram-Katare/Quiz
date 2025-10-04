@@ -39,7 +39,7 @@ export default function Profile() {
               className="rounded-full border-8 border-[#9741cd] shadow-xl w-60 h-60 md:w-72 md:h-72 lg:w-[350px] lg:h-[350px] object-cover bg-white"
             />
           </div>
-          {/* Right: Profile Info */}
+    
           <div className="flex flex-col justify-center w-full">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-wider">{user?.username}</h1>
             <div className="bg-white/20 rounded-2xl shadow-lg p-6 mt-4 flex flex-row items-center gap-4">
@@ -47,12 +47,6 @@ export default function Profile() {
               <span className="text-xl md:text-2xl font-medium text-white">Quiz Participated:</span>
               <span className="ml-2 text-2xl md:text-3xl font-bold text-white">{user?.quizParticipated}</span>
             </div>
-
-            {/* <div className="bg-white/20 rounded-2xl shadow-lg p-6 mt-4 flex flex-row items-center gap-4">
-              <span className="text-yellow-300 text-3xl">❓</span>
-              <span className="text-xl md:text-2xl font-medium text-white">Quiz Created:</span>
-              <span className="ml-2 text-2xl md:text-3xl font-bold text-white">{user?.quizCreated}</span>
-            </div> */}
 
             <div className="bg-white/20 rounded-2xl shadow-lg p-6 mt-4 flex flex-row items-center gap-4">
               <span className="text-yellow-300 text-3xl">🪙</span>

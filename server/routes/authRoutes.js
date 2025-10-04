@@ -1,5 +1,5 @@
 import express from 'express';
-import { signup, login, getAllUsers, incrementPoints, incrementQuizParticipated, getUserAccuracy, setAvatar, getAvatar, getPoints } from '../controllers/authController.js';
+import { signup, login, getAllUsers, incrementPoints, incrementQuizParticipated, getUserAccuracy, getPoints } from '../controllers/authController.js';
 import  verifyToken from '../middleware/authMiddleware.js';
 
 const router =  express.Router();
@@ -15,8 +15,5 @@ router.put("/quizParticipated", verifyToken, incrementQuizParticipated);
 router.get("/accuracy", verifyToken, getUserAccuracy);
 
 router.get("/points", verifyToken, getPoints);
-
-// router.put("/avatar", verifyToken, setAvatar);
-// router.get("/avatar", verifyToken, getAvatar);
 
 export default router;

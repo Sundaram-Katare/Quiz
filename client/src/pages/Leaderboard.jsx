@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Leaderboard() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white font-poppins">
       <Navbar />
 
       <div className="p-6 max-w-6xl mx-auto">
@@ -18,7 +18,8 @@ export default function Leaderboard() {
           🏆 Lumin Leaderboard
         </motion.h1>
 
-        {/* Leaderboard Container */}
+        <h2 className="font-light font-poppins text-center animate-pulse">Leaderboard rankings decide only on the basis of the Trivia. Room quizzes performance doesn't affect the leaderboard.</h2>
+
         <motion.div
           className="p-4 rounded-xl bg-gray-950 bg-opacity-80 shadow-lg border border-gray-800"
           initial={{ y: 30, opacity: 0 }}

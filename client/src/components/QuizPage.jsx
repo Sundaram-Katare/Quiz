@@ -10,7 +10,7 @@ export default function QuizPage({ id }) {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const backToTriviaPage = () => {
     navigate("/trivia");
@@ -18,7 +18,7 @@ export default function QuizPage({ id }) {
 
   const startQuiz = async () => {
     try {
-      if(quiz.live === "No" ){
+      if (quiz.live === "No") {
         await dispatch(incrementQuizParticipated()).unwrap();
       }
     } catch (err) {
@@ -60,9 +60,13 @@ export default function QuizPage({ id }) {
             Start Quiz
           </button>
 
-          <div className="text-black font-poppins text-md flex">
-            <span className="font-bold">Note:- </span><p className="font-light">Leaving Quiz half-way can affect your accuracy on the leaderboard.</p>  
-          </div> 
+          <div className="text-black font-poppins text-md">
+            <span className="font-bold">Note:- </span>
+            <ul>
+              <li className="ml-1 font-light">◼️ Leaving Quiz half-way can affect your accuracy on the leaderboard.</li>
+              <li className="ml-1 font-light">◼️ Don't refresh the window while attempting the quiz.</li>
+            </ul>
+          </div>
         </div>
         {/* Right: Image */}
         <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-50 p-4">
