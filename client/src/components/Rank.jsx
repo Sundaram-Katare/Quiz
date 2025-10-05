@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
+const VITE_BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:3000/api/";
+
 export default function Rank() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/auth/");
+        const res = await axios.get(`${VITE_BACKEND_API_URL}auth`);
         // Calculate accuracy
         const usersWithAccuracy = res.data.users.map((user) => {
           let accuracy =
